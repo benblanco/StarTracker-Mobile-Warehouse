@@ -25,13 +25,7 @@ namespace StarTracker_Mobile_Warehouse
         public static IValueCallback mUploadMessage;
 
         public static int FILECHOOSER_RESULTCODE = 1;
-        //public static IValueCallback mUMA;
-        //public static int FCR = 1;
-        //public static IValueCallback mUploadCallbackAboveL;
-        //public static int PHOTO_REQUEST = 10023;
-        //public static Uri imageUri;
         public static MainActivity Instance;
-
 
         WebView webView;
 
@@ -39,7 +33,6 @@ namespace StarTracker_Mobile_Warehouse
         //Button btnBack;
         //Button btnForward;
 
-        //PermissionRequest req;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -68,12 +61,11 @@ namespace StarTracker_Mobile_Warehouse
             webView.SetWebChromeClient(new STChromeClient(this));
             webView.SetWebViewClient(new STWebViewClient(this));
 
-            webView.LoadUrl("http://staging.startracker.tristarfreightsys.com");
+            webView.LoadUrl("https://forums.xamarin.com/");
             Instance = this;
 
             if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.Camera) != (int)Permission.Granted)
             {
-                //RequestPermissions(new string[] { Manifest.Permission.Camera }, 0);
                 RequestPermissions(new string[] { Manifest.Permission.Camera, Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage }, 0);
             }
             //btnHome = FindViewById<Button>(Resource.Id.btnHome);
@@ -81,26 +73,9 @@ namespace StarTracker_Mobile_Warehouse
             //btnForward = FindViewById<Button>(Resource.Id.btnForward);
             //btnHome.Click += BtnHome_Click;
             //btnBack.Click += BtnBack_Click;
-            //btnForward.Click += BtnForward_Click;
-
-            //public override bool OnKeyDown(Android.Views.Keycode keyCode, Android.Views.KeyEvent e)
-            //{
-            //    if (keyCode == Keycode.Back && browser.CanGoBack())
-            //    {
-            //        browser.GoBack();
-            //        return true;
-            //    }
-            //    return base.OnKeyDown(keyCode, e);
-            //}
-            
+            //btnForward.Click += BtnForward_Click;            
     }
 
-        public void AlertShow(string msg)
-        {
-            Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
-            alert.SetMessage(msg);
-            alert.Show();
-        }
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent intent)
         {
             if (requestCode == FILECHOOSER_RESULTCODE)
@@ -128,7 +103,7 @@ namespace StarTracker_Mobile_Warehouse
         }
         private void BtnHome_Click(object sender, System.EventArgs e)
         {
-            webView.LoadUrl("http://staging.startracker.tristarfreightsys.com");
+            webView.LoadUrl("https://forums.xamarin.com/");
         }
         private void BtnBack_Click(object sender, System.EventArgs e)
         {
@@ -153,7 +128,7 @@ namespace StarTracker_Mobile_Warehouse
             [Obsolete("deprecated")]
             public override void OnTooManyRedirects(WebView view, Message cancelMsg, Message continueMsg)
             {
-                view.LoadUrl("http://staging.startracker.tristarfreightsys.com");
+                view.LoadUrl("https://forums.xamarin.com/");
                 base.OnTooManyRedirects(view, cancelMsg, continueMsg);
             }
 
@@ -173,23 +148,7 @@ namespace StarTracker_Mobile_Warehouse
             public override void OnPermissionRequest(PermissionRequest request)
             {
                 request.Grant(request.GetResources());
-                //_activity.RunOnUiThread(() => {
-                //    request.Grant(request.GetResources());
-
-                //});
             }
-            //public override bool OnShowFileChooser(WebView webView, IValueCallback filePathCallback, FileChooserParams fileChooserParams)
-            //{
-            //MainActivity.mUploadMessage = filePathCallback;
-            //PhotoUtils.openFileChooseProcess(_activity);
-
-            //Intent i = new Intent(Intent.ActionGetContent);
-            //i.AddCategory(Intent.CategoryOpenable);
-            //i.SetType("image/*");
-            //_activity.StartActivityForResult(Intent.CreateChooser(i, "UploadImage"), MainActivity.FILECHOOSER_RESULTCODE);
-
-            //return true;
-            //}
             string _photoPath;
             public override bool OnShowFileChooser(Android.Webkit.WebView webView, Android.Webkit.IValueCallback filePathCallback, FileChooserParams fileChooserParams)
             {
@@ -250,17 +209,4 @@ namespace StarTracker_Mobile_Warehouse
             }
         }
     }
-    //public class PhotoUtils
-    //{
-    //    private static string TAG = "PhotoUtils";
-
-    //    public static void openFileChooseProcess(Activity activity)
-    //    {
-    //        Intent i = new Intent(Intent.ActionGetContent);
-    //        i.AddCategory(Intent.CategoryOpenable);
-    //        i.SetType("image/*");
-    //        activity.StartActivityForResult(Intent.CreateChooser(i, "UploadImage"), MainActivity.FILECHOOSER_RESULTCODE);
-    //    }
-    //}
-
 }
