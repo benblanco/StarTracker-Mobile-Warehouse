@@ -28,13 +28,6 @@
         android:text="Forward"
         android:id="@+id/btnForward" />-->
 
-<!--    <LinearLayout  
-        android:orientation="horizontal"  
-        android:layout_width="match_parent"  
-        android:layout_height="wrap_content"  
-        android:id="@+id/linearLayout1">  
-        </LinearLayout> -->
-
         <android.webkit.WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
